@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/general.xhtml">
+	
+	<ui:define name="content">
+		<div class="pageHeader">Adicionar Tipo de Solicitação</div>
+		
+		<h:form id="addForm">
+			<p:growl autoUpdate="true" showDetail="true" />
+			
+			<h:outputText value="Tipo de solicitação" /><br />
+			<p:inputText value="#{tipoSolicitacaoBean.itemVO.descricao}" required="true" requiredMessage="Campo tipo de solicitação vazio." /><br /><br />
+			<p:commandButton type="submit" value="Gravar" actionListener="#{tipoSolicitacaoBean.gravar}" update="@form" />
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

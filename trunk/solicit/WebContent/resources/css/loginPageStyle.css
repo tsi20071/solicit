@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+.ui-widget {
+	font-size: 12px !important;
+}
+
+body {
+	background: #ffffff url("#{resource['images:mainBackground.png']}") repeat;
+	font-family: Arial, Helvetica, sans;
+	font-size: 12px;
+}
+
+div.solicitLogo {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+}
+
+div.loginPanel {
+	margin: 180px auto 0 auto;
+	padding: 40px 10px 40px 10px;
+	width: 300px;
+	background: #C9E7C9;
+	border: 8px solid #96B496;
+	position: relative;
+	
+	-moz-box-shadow: 0px 0px 30px #000000;
+	-webkit-box-shadow: 0px 0px 30px #000000;
+	box-shadow: 0px 0px 30px #000000;
+}
+
+div.loginPanel table {
+	margin: 0 auto;
+}
+
+img.ifLogo {
+	position: absolute;
+	left: -25px;
+	top: -90px;
+}
+
+.round20px {
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}

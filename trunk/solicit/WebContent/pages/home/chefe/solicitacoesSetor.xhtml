@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/general.xhtml">
+	
+	<ui:define name="content">
+		<div class="pageHeader">Minhas Solicitações</div>
+		
+		<h:form id="viewForm">
+			<p:growl autoUpdate="true" showDetail="true" />
+			
+			<p:dataTable value="#{solicitacaoSetorBean.itens}" var="item" emptyMessage="Você não tem nenhum registro de solicitações." >
+				<p:column headerText="Código" style="text-align: center;">
+					<h:outputText value="#{item.id}" />
+				</p:column>
+				
+				<p:column headerText="Servidor" style="text-align: center;">
+					<h:outputText value="#{item.servidor.matricula}" /><br />
+					<h:outputText value="#{item.servidor.nome}" />
+				</p:column>
+				
+				<p:column headerText="Data" style="text-align: center;">
+					<h:outputText value="#{item.dataCadastro}">
+						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Tipo de solicitação">
+					<h:outputText value="#{item.tipoSolicitacao.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Teor" style="text-align: center;">
+					<p:commandButton value="Mostrar" update=":viewForm:teorDlgDisplay" action="#{solicitacaoSetorBean.preencherVO}" oncomplete="teorDlg.show();" process="@this">
+						<f:setPropertyActionListener value="#{item}" target="#{solicitacaoSetorBean.item}" />
+					</p:commandButton>
+				</p:column>
+				
+				<p:column headerText="Homologação" style="text-align: center;">
+					<p:commandButton value="Alterar" update=":viewForm:avalDlgDisplay" action="#{solicitacaoSetorBean.preencherVO}" oncomplete="avalDlg.show();" process="@this">
+						<f:setPropertyActionListener value="#{item}" target="#{solicitacaoSetorBean.item}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			
+			<p:dialog id="teorDlg" widgetVar="teorDlg" modal="true" width="460" height="340">
+				<h:panelGrid id="teorDlgDisplay">
+					<h:outputText value="#{solicitacaoSetorBean.itemVO.descricao}" escape="false" />
+				</h:panelGrid>
+			</p:dialog>
+			
+			<p:dialog id="avalDlg" widgetVar="avalDlg" modal="true">
+				<h:panelGrid id="avalDlgDisplay">
+					<h:outputText value="Servidor: #{solicitacaoSetorBean.itemVO.servidor}" />
+					<h:outputText value="Matrícula: #{solicitacaoSetorBean.itemVO.matriculaServidor}" /><br />
+					<p:editor value="#{solicitacaoSetorBean.itemVO.aval}" /><br />
+					<p:commandButton value="Atualizar" update=":viewForm:avalDlgDisplay" action="#{solicitacaoSetorBean.atualizar}" onsuccess="avalDlg.hide();" process="avalDlgDisplay" />
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
