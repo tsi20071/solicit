@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/general.xhtml">
+	
+	<ui:define name="content">
+		<div class="pageHeader">Cadastrar Servidor</div>
+	
+		<h:form id="addForm">
+			<p:growl autoUpdate="true" showDetail="true" />
+			
+			<h:outputText value="Matrícula" /><br />
+			<p:inputText value="#{servidorBean.itemVO.matricula}" required="true" requiredMessage="Campo matrícula vazio." /><br />
+
+			<h:outputText value="Nome" /><br />
+			<p:inputText value="#{servidorBean.itemVO.nome}" required="true" requiredMessage="Campo nome vazio." /><br />
+			
+			<h:outputText value="CPF" /><br />
+			<p:inputMask value="#{servidorBean.itemVO.cpf}" mask="999.999.999-99" required="true" requiredMessage="Campo CPF vazio." /><br />
+			
+			<h:outputText value="E-mail" /><br />
+			<p:inputText value="#{servidorBean.itemVO.email}" required="true" requiredMessage="Campo e-mail vazio." /><br />
+			
+			<h:outputText value="Senha" /><br />
+			<p:inputText value="#{servidorBean.itemVO.senha}" type="password" required="true" requiredMessage="Campo senha vazio." /><br />
+			
+			<h:outputText value="Setor" /><br />
+			<p:selectOneMenu value="#{servidorBean.itemVO.setorId}" required="true" requiredMessage="Campo setor vazio.">
+				<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+				<f:selectItems value="#{servidorBean.setores}" var="setor" itemLabel="#{setor.descricao}" itemValue="#{setor.id}" />
+			</p:selectOneMenu><br /><br />
+			
+			<p:commandButton type="submit" value="Gravar" actionListener="#{servidorBean.gravar}" update="@form" />
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

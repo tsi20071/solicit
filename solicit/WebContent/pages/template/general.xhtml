@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>IFPB SoliciT</title>
+	<h:outputStylesheet name="homePageStyle.css" library="css" />
+</h:head>
+
+<h:body>
+	<div class="header">
+		<div class="headerWrapper">
+			<div class="headerLogo">
+				<h:outputLink value="/solicit/">
+					<h:graphicImage library="images" name="headerLogo.png" style="padding-top: 1px;" />
+				</h:outputLink>
+			</div>
+			<div class="headerInfo"><h:outputText value="#{usuarioBean.usuario.nome}" style="padding-left: 15px;" rendered="#{not empty usuarioBean.usuario}" /></div>
+		</div>
+	</div>
+	
+	<div class="managerButtons">
+		<h:form>
+			<h:commandLink action="visualizarSolicitacoes" rendered="#{not empty usuarioBean.usuario}" title="Visualizar solicitações">
+				<h:graphicImage library="managerImages" name="event.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarSolicitacao" rendered="#{not empty usuarioBean.usuario}" title="Adicionar solicitação">
+				<h:graphicImage library="managerImages" name="eventMoreOne.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarTipoSolicitacao" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso >= 1)}" title="Adicionar tipo de solicitação">
+				<h:graphicImage library="managerImages" name="eventTypeMoreOne.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="solicitacoesSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso == 1)}" title="Visualizar ou avaliar solicitações do setor">
+				<h:graphicImage library="managerImages" name="departmentEvents.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso >= 2)}" title="Adicionar setor">
+				<h:graphicImage library="managerImages" name="departmentMoreOne.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="#{usuarioBean.logoff}" rendered="#{not empty usuarioBean.usuario}" title="Efetuar logoff" style="float: right;">
+				<h:graphicImage library="managerImages" name="logoff.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="mudarSenha" rendered="#{not empty usuarioBean.usuario}" title="Alterar minha senha" style="float: right;">
+				<h:graphicImage library="managerImages" name="profile.png" />
+			</h:commandLink>
+		</h:form>
+	</div>
+	
+	<div class="contentWrapper">
+		<ui:insert name="content" />
+	</div>
+</h:body>
+
+</html>
