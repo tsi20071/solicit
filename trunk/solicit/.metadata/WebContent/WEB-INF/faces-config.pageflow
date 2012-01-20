@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13248378890390" configfile="/solicit/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="pages/*" x="122" y="2098" id="pf13250305362160" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf13250305362161 pf13250326269194 pf13250340165416 pf13251828717230 pf13266470850110 pf13266617785141 pf13266662597083 pf13267706756390 pf13270203267030 pf13270332322242 pf13270332322243" path="/pages/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/*" x="122" y="1938" id="pf13250305362160" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf13250305362161 pf13250326269194 pf13250340165416 pf13251828717230 pf13266470850110 pf13266617785141 pf13266662597083 pf13267706756390 pf13270203267030 pf13270332322242 pf13270332322243 pf13270958470910" path="/pages/*"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/cadastrarServidor.xhtml" x="338" y="178" id="pf13250305362162" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13250305362161" path="/pages/cadastrarServidor.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/login.xhtml" x="338" y="562" id="pf13250326269195" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13250326269194" path="/pages/login.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/manager/adicionarSetor.xhtml" x="338" y="946" id="pf13250340165417" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13250340165416" path="/pages/manager/adicionarSetor.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/home/adicionarSolicitacao.xhtml" x="338" y="1330" id="pf13251828717231" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf13251828717230" path="/pages/home/adicionarSolicitacao.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/home/visualizarSolicitacoes.xhtml" x="338" y="1714" id="pf13265868803531" referenceLink="//@navigationRule.4/@navigationCase.2/@toViewId|" inlinks="pf13266470850110" path="/pages/home/visualizarSolicitacoes.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/home/chefe/adicionarTipoSolicitacao.xhtml" x="338" y="2098" id="pf13266617785142" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf13266617785141" path="/pages/home/chefe/adicionarTipoSolicitacao.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/home/mudarSenha.xhtml" x="338" y="2482" id="pf13266662597084" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf13266662597083" path="/pages/home/mudarSenha.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/home/chefe/solicitacoesSetor.xhtml" x="338" y="2866" id="pf13267706756401" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf13267706756390 pf13270332322242" path="/pages/home/chefe/solicitacoesSetor.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/manager/visualizarRelatorios.xhtml" x="338" y="3250" id="pf13270203267041" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf13270203267030 pf13270332322243" path="/pages/manager/visualizarRelatorios.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home/visualizarSolicitacoes.xhtml" x="338" y="1714" id="pf13265868803531" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf13266470850110 pf13270958470910" path="/pages/home/visualizarSolicitacoes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home/chefe/adicionarTipoSolicitacao.xhtml" x="338" y="2098" id="pf13266617785142" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf13266617785141" path="/pages/home/chefe/adicionarTipoSolicitacao.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home/mudarSenha.xhtml" x="338" y="2482" id="pf13266662597084" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf13266662597083" path="/pages/home/mudarSenha.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home/chefe/solicitacoesSetor.xhtml" x="338" y="2866" id="pf13267706756401" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf13267706756390 pf13270332322242" path="/pages/home/chefe/solicitacoesSetor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/manager/visualizarRelatorios.xhtml" x="338" y="3250" id="pf13270203267041" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf13270203267030 pf13270332322243" path="/pages/manager/visualizarRelatorios.xhtml"/>
   <links id="pf13250305362161" target="pf13250305362162" source="pf13250305362160" outcome="cadastrarServidor"/>
   <links id="pf13250326269194" target="pf13250326269195" source="pf13250305362160" outcome="logoff"/>
   <links id="pf13250340165416" target="pf13250340165417" source="pf13250305362160" outcome="adicionarSetor"/>
@@ -21,4 +21,5 @@
   <links id="pf13270203267030" target="pf13270203267041" source="pf13250305362160" outcome="main"/>
   <links id="pf13270332322242" target="pf13267706756401" source="pf13250305362160" outcome="solicitacoesSetor"/>
   <links id="pf13270332322243" target="pf13270203267041" source="pf13250305362160" outcome="visualizarRelatorios"/>
+  <links id="pf13270958470910" target="pf13265868803531" source="pf13250305362160" outcome="visualizarSolicitacoes"/>
 </pageflow:Pageflow>

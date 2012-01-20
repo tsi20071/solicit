@@ -58,6 +58,11 @@
 			<if>#{usuarioBean.usuario.nivelAcesso eq 0}</if>
 			<to-view-id>/pages/home/visualizarSolicitacoes.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<if>#{empty usuarioBean.usuario}</if>
+			<to-view-id>/pages/login.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>pages/*</display-name>

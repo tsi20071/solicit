@@ -103,17 +103,18 @@ public class SolicitacaoSetorBean {
 	}
 
 	public void atualizarItens() {
-		Long countSolicitacoes = (Long) basicJpaRepository.queryFind("select count(s) from Solicitacao s where s.setor = ?1", new Object[] {usuarioBean.getUsuario().getSetor()}).get(0);
-
-		if(countSolicitacoes > itens.size()) {
-			if(countSolicitacoes == 1) {
+		int countSolicitacoes = ((Long) basicJpaRepository.queryFind("select count(s) from Solicitacao s where s.setor = ?1", new Object[] {usuarioBean.getUsuario().getSetor()}).get(0)).intValue();
+		int diferenca = (countSolicitacoes - itens.size());
+		
+		if(diferenca > 0) {
+			if(diferenca == 1) {
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização!", "Chegou 1 nova solicitação.");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-			} else if(countSolicitacoes > 1) {
+			} else {
 				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização!", "Chegaram " + String.valueOf(countSolicitacoes - itens.size()) + " novas solicitações.");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			}
-			itens = basicJpaRepository.queryFind("select s from Solicitacao s where s.setor = ?1", new Object[] {usuarioBean.getUsuario().getSetor()});
+			itens = basicJpaRepository.queryFind("select s from Solicitacao s where s.setor = ?1 order by s.id desc", new Object[] {usuarioBean.getUsuario().getSetor()});
 		}
 	}
 
@@ -122,6 +123,6 @@ public class SolicitacaoSetorBean {
 		itemVO = new SolicitacaoVO();
 
 		// Pega as solicitações do setor do usuário da sessão (no caso, o chefe)
-		itens = basicJpaRepository.queryFind("select s from Solicitacao s where s.setor = ?1", new Object[] {usuarioBean.getUsuario().getSetor()});
+		itens = basicJpaRepository.queryFind("select s from Solicitacao s where s.setor = ?1 order by s.id desc", new Object[] {usuarioBean.getUsuario().getSetor()});
 	}
 }
