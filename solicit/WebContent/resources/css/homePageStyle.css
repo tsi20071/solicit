@@ -82,3 +82,16 @@ body {
 	color: #009900;
 	text-transform: uppercase;
 }
+
+.bottom {
+	margin: 0 auto 150px auto;
+	padding: 20px;
+	width: 820px;
+	height: 110px;
+	background: url("#{resource['images:bottomLight.png']}") center top no-repeat;
+	text-align: center;
+}
+
+.clearer {
+	clear: both;
+}

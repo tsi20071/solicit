@@ -1,13 +1,12 @@
 package br.edu.ifpb.solicit.support;
 
-import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.springframework.stereotype.Service;
 
 @Service("md5Calculator")
-public class Md5Calculator implements Serializable {
+public class Md5Calculator {
 	private Md5Calculator() {}
 
 	public String md5(String input) {

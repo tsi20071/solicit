@@ -1,6 +1,5 @@
 package br.edu.ifpb.solicit.beans.manager;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,13 +17,15 @@ import br.edu.ifpb.solicit.model.Setor;
 
 @ManagedBean(name="setorBean")
 @RequestScoped
-public class SetorBean implements Serializable {
+public class SetorBean {
 	@ManagedProperty(value="#{repositoryService}")
 	private BasicJpaRepository basicJpaRepository;
 
 	private SetorVO itemVO;
 	private Setor item;
 
+	private List<Servidor> itens;
+	
 	private List<Servidor> servidores;
 
 	public SetorBean() {}
@@ -33,7 +34,7 @@ public class SetorBean implements Serializable {
 		try {
 			item = new Setor();
 			processarVO();
-
+			
 			basicJpaRepository.persist(item);
 
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", SuporteTexto.GRAVACAO_SUCESSO);
@@ -48,16 +49,10 @@ public class SetorBean implements Serializable {
 
 	public void processarVO() throws Exception {
 		item.setDescricao(itemVO.getDescricao());
-
-		if(itemVO.getChefeId().equals("")) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Atenção!", "Setor criado sem chefe.");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-		}
-		else {
-			item.setChefe(basicJpaRepository.find(Servidor.class, itemVO.getChefeId()));
-			item.getChefe().setNivelAcesso(1);
-			basicJpaRepository.merge(item.getChefe());
-		}
+		item.setChefe(basicJpaRepository.find(Servidor.class, itemVO.getChefeId()));
+		
+		if (basicJpaRepository.queryFind("select s from Setor s where s.descricao like ?1", new Object[] {itemVO.getDescricao()}).size() > 0)
+			throw new RuntimeException("Setor já existe.");
 	}
 
 
@@ -80,6 +75,12 @@ public class SetorBean implements Serializable {
 	public void setItemVO(SetorVO itemVO) {
 		this.itemVO = itemVO;
 	}
+	public List<Servidor> getItens() {
+		return itens;
+	}
+	public void setItens(List<Servidor> itens) {
+		this.itens = itens;
+	}
 	public List<Servidor> getServidores() {
 		return servidores;
 	}
@@ -90,6 +91,7 @@ public class SetorBean implements Serializable {
 	@PostConstruct
 	public void afterPropertiesSet() {
 		itemVO = new SetorVO();
+		itens = basicJpaRepository.queryFind("select s from Setor s order by s.descricao");
 		servidores = basicJpaRepository.queryFind("select s from Servidor s where s not in (select t.chefe from Setor t)");
 	}
 }

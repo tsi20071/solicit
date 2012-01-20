@@ -11,13 +11,26 @@
 	<ui:define name="content">
 		<div class="pageHeader">Adicionar Tipo de Solicitação</div>
 		
+		<div style="float: right; width: 300px;">
+			<p:dataTable id="viewTable" value="#{tipoSolicitacaoBean.itens}" var="item">
+				<p:column headerText="Código">
+					<h:outputText value="#{item.id}" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+			</p:dataTable>
+		</div>
+		
 		<h:form id="addForm">
 			<p:growl autoUpdate="true" showDetail="true" />
 			
 			<h:outputText value="Tipo de solicitação" /><br />
 			<p:inputText value="#{tipoSolicitacaoBean.itemVO.descricao}" required="true" requiredMessage="Campo tipo de solicitação vazio." /><br /><br />
-			<p:commandButton type="submit" value="Gravar" actionListener="#{tipoSolicitacaoBean.gravar}" update="@form" />
+			<p:commandButton type="submit" value="Gravar" actionListener="#{tipoSolicitacaoBean.gravar}" update="@form,viewTable" />
 		</h:form>
+		
+		<div class="clearer"></div>
 	</ui:define>
 	
 </ui:composition>

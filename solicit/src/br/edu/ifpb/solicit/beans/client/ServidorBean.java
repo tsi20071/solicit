@@ -54,6 +54,10 @@ public class ServidorBean implements Serializable {
 	}
 
 	public void processarVO() throws Exception {
+		Servidor servidor = basicJpaRepository.find(Servidor.class, itemVO.getMatricula());
+		if (servidor != null)
+			throw new RuntimeException("Matrícula " + servidor.getMatricula() + " já cadastrada para " + servidor.getNome() + ". Verifique se o número da matrícula está correto.");
+		
 		item.setMatricula(itemVO.getMatricula());
 		item.setNome(itemVO.getNome());
 		item.setCpf(itemVO.getCpf());

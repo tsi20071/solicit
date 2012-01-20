@@ -1,6 +1,6 @@
-package br.edu.ifpb.solicit.beans.manager;
+package br.edu.ifpb.solicit.beans.client;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -16,12 +16,14 @@ import br.edu.ifpb.solicit.model.TipoSolicitacao;
 
 @ManagedBean(name="tipoSolicitacaoBean")
 @RequestScoped
-public class TipoSolicitacaoBean implements Serializable {
+public class TipoSolicitacaoBean {
 	@ManagedProperty(value="#{repositoryService}")
 	private BasicJpaRepository basicJpaRepository;
 
 	private TipoSolicitacaoVO itemVO;
 	private TipoSolicitacao item;
+	
+	private List<TipoSolicitacao> itens;
 
 	public TipoSolicitacaoBean() {}
 
@@ -44,6 +46,9 @@ public class TipoSolicitacaoBean implements Serializable {
 
 	public void processarVO() throws Exception {
 		item.setDescricao(itemVO.getDescricao());
+		
+		if (basicJpaRepository.queryFind("select ts from TipoSolicitacao ts where ts.descricao like ?1", new Object[] {itemVO.getDescricao()}).size() > 0)
+			throw new RuntimeException("Tipo de solicitação já existe.");
 	}
 
 
@@ -66,11 +71,17 @@ public class TipoSolicitacaoBean implements Serializable {
 	public void setItemVO(TipoSolicitacaoVO itemVO) {
 		this.itemVO = itemVO;
 	}
-	
+	public List<TipoSolicitacao> getItens() {
+		return itens;
+	}
+	public void setItens(List<TipoSolicitacao> itens) {
+		this.itens = itens;
+	}
 	
 
 	@PostConstruct
 	public void afterPropertiesSet() {
 		itemVO = new TipoSolicitacaoVO();
+		itens = basicJpaRepository.queryFind("select ts from TipoSolicitacao ts order by ts.descricao");
 	}
 }

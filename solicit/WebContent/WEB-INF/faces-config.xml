@@ -44,6 +44,25 @@
 		<display-name>pages/*</display-name>
 		<from-view-id>/pages/*</from-view-id>
 		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<if>#{usuarioBean.usuario.nivelAcesso eq 2}</if>
+			<to-view-id>/pages/manager/visualizarRelatorios.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<if>#{usuarioBean.usuario.nivelAcesso eq 1}</if>
+			<to-view-id>/pages/home/chefe/solicitacoesSetor.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<if>#{usuarioBean.usuario.nivelAcesso eq 0}</if>
+			<to-view-id>/pages/home/visualizarSolicitacoes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>pages/*</display-name>
+		<from-view-id>/pages/*</from-view-id>
+		<navigation-case>
 			<from-outcome>visualizarSolicitacoes</from-outcome>
 			<to-view-id>/pages/home/visualizarSolicitacoes.xhtml</to-view-id>
 		</navigation-case>
@@ -53,7 +72,7 @@
 		<from-view-id>/pages/*</from-view-id>
 		<navigation-case>
 			<from-outcome>adicionarTipoSolicitacao</from-outcome>
-			<to-view-id>/pages/manager/adicionarTipoSolicitacao.xhtml</to-view-id>
+			<to-view-id>/pages/home/chefe/adicionarTipoSolicitacao.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -70,6 +89,14 @@
 		<navigation-case>
 			<from-outcome>solicitacoesSetor</from-outcome>
 			<to-view-id>/pages/home/chefe/solicitacoesSetor.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>pages/*</display-name>
+		<from-view-id>/pages/*</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarRelatorios</from-outcome>
+			<to-view-id>/pages/manager/visualizarRelatorios.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

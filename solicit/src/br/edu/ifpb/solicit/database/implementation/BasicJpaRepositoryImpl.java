@@ -1,6 +1,5 @@
 package br.edu.ifpb.solicit.database.implementation;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,7 +15,14 @@ import br.edu.ifpb.solicit.database.api.BasicJpaRepository;
 
 @Service("repositoryService")
 @Transactional
-public class BasicJpaRepositoryImpl implements BasicJpaRepository, Serializable {
+public class BasicJpaRepositoryImpl implements BasicJpaRepository {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 

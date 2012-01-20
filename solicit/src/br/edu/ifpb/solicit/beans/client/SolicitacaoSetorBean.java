@@ -1,6 +1,5 @@
 package br.edu.ifpb.solicit.beans.client;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +19,7 @@ import br.edu.ifpb.solicit.model.Solicitacao;
 
 @ManagedBean(name="solicitacaoSetorBean")
 @ViewScoped
-public class SolicitacaoSetorBean implements Serializable {
+public class SolicitacaoSetorBean {
 	@ManagedProperty(value="#{repositoryService}")
 	private BasicJpaRepository basicJpaRepository;
 	@ManagedProperty(value="#{usuarioBean}")
@@ -101,6 +100,21 @@ public class SolicitacaoSetorBean implements Serializable {
 
 	public void setItens(List<Solicitacao> itens) {
 		this.itens = itens;
+	}
+
+	public void atualizarItens() {
+		Long countSolicitacoes = (Long) basicJpaRepository.queryFind("select count(s) from Solicitacao s where s.setor = ?1", new Object[] {usuarioBean.getUsuario().getSetor()}).get(0);
+
+		if(countSolicitacoes > itens.size()) {
+			if(countSolicitacoes == 1) {
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização!", "Chegou 1 nova solicitação.");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			} else if(countSolicitacoes > 1) {
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização!", "Chegaram " + String.valueOf(countSolicitacoes - itens.size()) + " novas solicitações.");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			}
+			itens = basicJpaRepository.queryFind("select s from Solicitacao s where s.setor = ?1", new Object[] {usuarioBean.getUsuario().getSetor()});
+		}
 	}
 
 	@PostConstruct

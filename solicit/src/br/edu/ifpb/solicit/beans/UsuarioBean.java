@@ -41,7 +41,7 @@ public class UsuarioBean implements Serializable {
 			
 			this.afterPropertiesSet();
 			
-			return "visualizarSolicitacoes";
+			return "main";
 		}
 		else {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, SuporteTexto.MATRICULA_OU_SENHA_ERRADOS, null);

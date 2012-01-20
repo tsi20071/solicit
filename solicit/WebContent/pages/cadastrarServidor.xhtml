@@ -11,6 +11,10 @@
 	<ui:define name="content">
 		<div class="pageHeader">Cadastrar Servidor</div>
 	
+		<div style="float: right; width: 300px;">
+			<h:graphicImage library="images" name="userToDatabase.png" />
+		</div>
+	
 		<h:form id="addForm">
 			<p:growl autoUpdate="true" showDetail="true" />
 			
@@ -36,6 +40,8 @@
 			</p:selectOneMenu><br /><br />
 			
 			<p:commandButton type="submit" value="Gravar" actionListener="#{servidorBean.gravar}" update="@form" />
+			
+			<div class="clearer"></div>
 		</h:form>
 	</ui:define>
 	

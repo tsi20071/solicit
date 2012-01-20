@@ -1,10 +1,11 @@
 package br.edu.ifpb.solicit.database.api;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-public interface BasicJpaRepository {
+public interface BasicJpaRepository extends Serializable {
 	void persist(Object entity);
 	void remove(Object entity);
 	void update(Object entity);
