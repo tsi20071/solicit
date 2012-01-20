@@ -1,5 +1,6 @@
 package br.edu.ifpb.solicit.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ public class TipoSolicitacao {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@Column(unique=true)
 	private String descricao;
 	
 	public TipoSolicitacao() {}

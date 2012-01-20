@@ -12,18 +12,26 @@
 		<div class="pageHeader">Minhas Solicitações</div>
 		
 		<h:form id="viewForm">
-			<p:dataTable value="#{solicitacaoBean.itens}" var="item" emptyMessage="Você não tem nenhum registro de solicitações." >
-				<p:column headerText="Código" style="text-align: center;">
+			<p:growl autoUpdate="true" showDetail="true" life="3000" />
+			
+			<p:dataTable id="viewTable" value="#{solicitacaoBean.itens}" var="item"
+				paginator="true" rows="10"
+				emptyMessage="Você não tem nenhum registro de solicitações.">
+				
+				<p:column headerText="Código" sortBy="#{item.id}" style="text-align: center;">
 					<h:outputText value="#{item.id}" />
 				</p:column>
 				
-				<p:column headerText="Data" style="text-align: center;">
+				<p:column headerText="Data" sortBy="#{item.dataCadastro}" style="text-align: center;">
 					<h:outputText value="#{item.dataCadastro}">
-						<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText><br />
+					<h:outputText value="#{item.dataCadastro}">
+						<f:convertDateTime pattern="HH:mm'h'" />
 					</h:outputText>
 				</p:column>
 				
-				<p:column headerText="Tipo de solicitação">
+				<p:column headerText="Tipo de solicitação" sortBy="#{item.id}">
 					<h:outputText value="#{item.tipoSolicitacao.descricao}" />
 				</p:column>
 				
@@ -33,11 +41,11 @@
 					</p:commandButton>
 				</p:column>
 				
-				<p:column headerText="Setor destino">
+				<p:column headerText="Setor destino" sortBy="#{item.setor.descricao}">
 					<h:outputText value="#{item.setor.descricao}" />
 				</p:column>
 				
-				<p:column headerText="Homologação" style="text-align: center;">
+				<p:column headerText="Homologação" sortBy="#{empty item.aval}" style="text-align: center;">
 					<h:outputText value="Não" rendered="#{empty item.aval}" />
 					<p:commandButton value="Mostrar" update=":viewForm:avalDlgDisplay" action="#{solicitacaoBean.preencherVO}" oncomplete="avalDlg.show();" process="@this" rendered="#{not empty item.aval}">
 						<f:setPropertyActionListener value="#{item}" target="#{solicitacaoBean.item}" />
@@ -45,17 +53,19 @@
 				</p:column>
 			</p:dataTable>
 			
-			<p:dialog id="teorDlg" widgetVar="teorDlg" modal="true" width="460" height="340">
+			<p:dialog id="teorDlg" header="Teor da solicitação" widgetVar="teorDlg" modal="true" width="460" height="340">
 				<h:panelGrid id="teorDlgDisplay">
 					<h:outputText value="#{solicitacaoBean.itemVO.descricao}" escape="false" />
 				</h:panelGrid>
 			</p:dialog>
 			
-			<p:dialog id="avalDlg" widgetVar="avalDlg" modal="true" width="460" height="340">
+			<p:dialog id="avalDlg" header="Resultado da homologação"  widgetVar="avalDlg" modal="true" width="460" height="340">
 				<h:panelGrid id="avalDlgDisplay">
 					<h:outputText value="#{solicitacaoBean.itemVO.aval}" escape="false" />
 				</h:panelGrid>
 			</p:dialog>
+			
+			<p:poll interval="4" listener="#{solicitacaoBean.atualizarItens}" update="viewTable"/>
 		</h:form>
 	</ui:define>
 	

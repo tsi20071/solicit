@@ -1,6 +1,7 @@
 package br.edu.ifpb.solicit.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class Setor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@Column(unique=true)
 	private String descricao;
 	@OneToOne(cascade={CascadeType.MERGE, CascadeType.REFRESH})
 	private Servidor chefe;

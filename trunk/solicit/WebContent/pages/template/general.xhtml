@@ -26,23 +26,27 @@
 	
 	<div class="managerButtons">
 		<h:form>
-			<h:commandLink action="visualizarSolicitacoes" rendered="#{not empty usuarioBean.usuario}" title="Visualizar solicitações">
-				<h:graphicImage library="managerImages" name="event.png" />
+			<h:commandLink action="visualizarRelatorios" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso ge 2)}" title="Visualizar relatórios">
+				<h:graphicImage library="managerImages" name="report.png" />
 			</h:commandLink>
 			
-			<h:commandLink action="adicionarSolicitacao" rendered="#{not empty usuarioBean.usuario}" title="Adicionar solicitação">
-				<h:graphicImage library="managerImages" name="eventMoreOne.png" />
-			</h:commandLink>
-			
-			<h:commandLink action="adicionarTipoSolicitacao" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso >= 1)}" title="Adicionar tipo de solicitação">
-				<h:graphicImage library="managerImages" name="eventTypeMoreOne.png" />
-			</h:commandLink>
-			
-			<h:commandLink action="solicitacoesSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso == 1)}" title="Visualizar ou avaliar solicitações do setor">
+			<h:commandLink action="solicitacoesSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso eq 1)}" title="Visualizar ou avaliar solicitações do setor">
 				<h:graphicImage library="managerImages" name="departmentEvents.png" />
 			</h:commandLink>
 			
-			<h:commandLink action="adicionarSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso >= 2)}" title="Adicionar setor">
+			<h:commandLink action="visualizarSolicitacoes" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso le 1)}" title="Visualizar solicitações">
+				<h:graphicImage library="managerImages" name="event.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarSolicitacao" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso le 1)}" title="Adicionar solicitação">
+				<h:graphicImage library="managerImages" name="eventMoreOne.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarTipoSolicitacao" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso ge 1)}" title="Adicionar tipo de solicitação">
+				<h:graphicImage library="managerImages" name="eventTypeMoreOne.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso ge 2)}" title="Adicionar setor">
 				<h:graphicImage library="managerImages" name="departmentMoreOne.png" />
 			</h:commandLink>
 			
@@ -58,6 +62,10 @@
 	
 	<div class="contentWrapper">
 		<ui:insert name="content" />
+	</div>
+	
+	<div class="bottom">
+		Copyright © 2012 Solicit Systems - IFPB  
 	</div>
 </h:body>
 

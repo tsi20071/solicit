@@ -1,6 +1,5 @@
 package br.edu.ifpb.solicit.beans.client;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import br.edu.ifpb.solicit.model.TipoSolicitacao;
 
 @ManagedBean(name="solicitacaoBean")
 @ViewScoped
-public class SolicitacaoBean implements Serializable {
+public class SolicitacaoBean {
 	@ManagedProperty(value="#{repositoryService}")
 	private BasicJpaRepository basicJpaRepository;
 	@ManagedProperty(value="#{usuarioBean}")
@@ -133,6 +132,23 @@ public class SolicitacaoBean implements Serializable {
 	
 	public void setItens(List<Solicitacao> itens) {
 		this.itens = itens;
+	}
+	
+	public void atualizarItens() {
+		List<Solicitacao> itensNovos = basicJpaRepository.queryFind("select s.solicitacoes from Servidor s where s = ?1", new Object[] {usuarioBean.getUsuario()});
+		
+		boolean flag = false;
+		
+		for(int i=0; i<itens.size(); i++) {
+			if(itens.get(i).getAval().length() != itensNovos.get(i).getAval().length()) {
+				flag = true;
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização!", "A solicitação " + itensNovos.get(i).getId() + " foi homologada.");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			}
+		}
+		
+		if(flag)
+			itens = itensNovos;
 	}
 
 	@PostConstruct

@@ -11,20 +11,31 @@
 	<ui:define name="content">
 		<div class="pageHeader">Adicionar Setor</div>
 		
+		<div style="float: right; width: 300px;">
+			<p:dataTable id="viewTable" value="#{setorBean.itens}" var="item">
+				<p:column headerText="Código">
+					<h:outputText value="#{item.id}" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+				<p:column headerText="Chefe">
+					<h:outputText value="#{item.chefe.nome}" />
+				</p:column>
+			</p:dataTable>
+		</div>
+		
 		<h:form id="addForm">
 			<p:growl autoUpdate="true" showDetail="true" />
 			
 			<h:outputText value="Setor" /><br />
-			<p:inputText value="#{setorBean.itemVO.descricao}" required="true" requiredMessage="Campo setor vazio." /><br />
-
-			<h:outputText value="Chefe" /><br />
-			<p:selectOneMenu value="#{setorBean.itemVO.chefeId}">
-				<f:selectItem itemLabel="(sem chefe)" itemValue="" noSelectionOption="true" />
-				<f:selectItems value="#{setorBean.servidores}" var="servidor" itemLabel="#{servidor.nome}" itemValue="#{servidor.matricula}" />
-			</p:selectOneMenu><br /><br />
+			<p:inputText value="#{setorBean.itemVO.descricao}" required="true" requiredMessage="Campo setor vazio." /><br /><br />
 			
-			<p:commandButton type="submit" value="Gravar" actionListener="#{setorBean.gravar}" update="@form" />
+			<p:commandButton type="submit" value="Gravar" actionListener="#{setorBean.gravar}" update="@form,viewTable" />
 		</h:form>
+		
+		<div class="clearer"></div>
+		
 	</ui:define>
 	
 </ui:composition>
