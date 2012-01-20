@@ -16,9 +16,11 @@
 	<div class="header">
 		<div class="headerWrapper">
 			<div class="headerLogo">
-				<h:outputLink value="/solicit/">
-					<h:graphicImage library="images" name="headerLogo.png" style="padding-top: 1px;" />
-				</h:outputLink>
+				<h:form>
+					<h:commandLink action="main">
+						<h:graphicImage library="images" name="headerLogo.png" style="padding-top: 1px;" />
+					</h:commandLink>
+				</h:form>
 			</div>
 			<div class="headerInfo"><h:outputText value="#{usuarioBean.usuario.nome}" style="padding-left: 15px;" rendered="#{not empty usuarioBean.usuario}" /></div>
 		</div>
