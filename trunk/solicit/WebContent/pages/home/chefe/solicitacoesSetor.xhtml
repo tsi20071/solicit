@@ -9,7 +9,7 @@
 	template="/pages/template/general.xhtml">
 	
 	<ui:define name="content">
-		<div class="pageHeader">Solicitações de <h:outputText value="#{solicitacaoSetorBean.usuarioBean.usuario.setor.descricao}" /></div>
+		<div class="pageHeader">Solicitações de <h:outputText value="#{solicitacaoSetorBean.usuarioBean.chefeSetor.descricao}" /></div>
 		
 		<h:form id="viewForm">
 			<p:growl autoUpdate="true" showDetail="true" life="3000" />
@@ -71,7 +71,7 @@
 				</h:panelGrid>
 			</p:dialog>
 			
-			<p:poll interval="4" listener="#{solicitacaoSetorBean.atualizarItens}" update="viewTable"/>
+			<p:poll interval="4" listener="#{solicitacaoSetorBean.atualizarItens}" update="viewTable" async="true"/>
 		</h:form>
 	</ui:define>
 	

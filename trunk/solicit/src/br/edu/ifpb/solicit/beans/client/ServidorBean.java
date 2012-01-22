@@ -1,6 +1,5 @@
 package br.edu.ifpb.solicit.beans.client;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +18,7 @@ import br.edu.ifpb.solicit.support.Md5Calculator;
 
 @ManagedBean(name="servidorBean")
 @RequestScoped
-public class ServidorBean implements Serializable {
+public class ServidorBean {
 	@ManagedProperty(value="#{repositoryService}")
 	private BasicJpaRepository basicJpaRepository;
 	@ManagedProperty(value="#{md5Calculator}")
@@ -30,11 +29,7 @@ public class ServidorBean implements Serializable {
 
 	private List<Setor> setores;
 
-
-
 	public ServidorBean() {}
-
-
 
 	public void gravar() {
 		try {
@@ -65,8 +60,6 @@ public class ServidorBean implements Serializable {
 		item.setMd5(md5Calculator.md5(itemVO.getSenha()));
 		item.setSetor(basicJpaRepository.find(Setor.class, Integer.parseInt((itemVO.getSetorId()))));
 	}
-
-
 
 	public BasicJpaRepository getBasicJpaRepository() {
 		return basicJpaRepository;
@@ -102,6 +95,6 @@ public class ServidorBean implements Serializable {
 	@PostConstruct
 	public void afterPropertiesSet() {
 		itemVO = new ServidorVO();
-		setores = basicJpaRepository.queryFind("select s from Setor s order by s.descricao asc");
+		setores = basicJpaRepository.queryFind("select s from Setor s where not s.id = 1 order by s.descricao asc");
 	}
 }

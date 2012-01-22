@@ -1,9 +1,8 @@
 package br.edu.ifpb.solicit.beans.vo;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class ServidorVO implements Serializable {
+public class ServidorVO {
 	private String matricula = "";
 	private String nome = "";
 	private String cpf = "";

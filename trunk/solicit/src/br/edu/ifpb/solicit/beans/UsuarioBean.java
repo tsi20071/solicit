@@ -1,6 +1,5 @@
 package br.edu.ifpb.solicit.beans;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,12 +13,13 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.solicit.database.api.BasicJpaRepository;
 import br.edu.ifpb.solicit.model.Servidor;
+import br.edu.ifpb.solicit.model.Setor;
 import br.edu.ifpb.solicit.support.Md5Calculator;
 
 @ManagedBean(name="usuarioBean")
 @Service("usuarioBean")
 @SessionScoped
-public class UsuarioBean implements Serializable {
+public class UsuarioBean {
 	@ManagedProperty(value="#{repositoryService}")
 	private BasicJpaRepository basicJpaRepository;
 	@ManagedProperty(value="#{md5Calculator}")
@@ -30,6 +30,7 @@ public class UsuarioBean implements Serializable {
 	private String novaSenha;
 
 	private Servidor usuario;
+	private Setor chefeSetor;
 
 	public UsuarioBean() {}
 
@@ -39,8 +40,10 @@ public class UsuarioBean implements Serializable {
 		if(loginResult.size() != 0) {
 			this.usuario = loginResult.get(0);
 			
-			this.afterPropertiesSet();
+			if(this.usuario.getNivelAcesso() == 1)
+				this.chefeSetor = (Setor) basicJpaRepository.queryFind("select s from Setor s where s.chefe = ?1", new Object[] {this.usuario}).get(0);
 			
+			this.afterPropertiesSet();
 			return "main";
 		}
 		else {
@@ -101,6 +104,12 @@ public class UsuarioBean implements Serializable {
 	}
 	public void setUsuario(Servidor usuario) {
 		this.usuario = usuario;
+	}
+	public Setor getChefeSetor() {
+		return chefeSetor;
+	}
+	public void setChefeSetor(Setor chefeSetor) {
+		this.chefeSetor = chefeSetor;
 	}
 	public String getMatricula() {
 		return matricula;

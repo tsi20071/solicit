@@ -31,7 +31,7 @@
 			<p:inputText value="#{servidorBean.itemVO.email}" required="true" requiredMessage="Campo e-mail vazio." /><br />
 			
 			<h:outputText value="Senha" /><br />
-			<p:inputText value="#{servidorBean.itemVO.senha}" type="password" required="true" requiredMessage="Campo senha vazio." /><br />
+			<p:password value="#{servidorBean.itemVO.senha}" required="true" requiredMessage="Campo senha vazio." promptLabel="Digite uma senha." weakLabel="Senha fraca." goodLabel="Senha boa." strongLabel="Senha forte." /><br />
 			
 			<h:outputText value="Setor" /><br />
 			<p:selectOneMenu value="#{servidorBean.itemVO.setorId}" required="true" requiredMessage="Campo setor vazio.">

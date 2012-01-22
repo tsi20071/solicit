@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/template/general.xhtml">
+	
+	<ui:define name="content">
+		<div class="pageHeader">Adicionar Chefe a Setor</div>
+		
+		<h:form id="addForm">
+			<p:growl autoUpdate="true" showDetail="true" />
+			
+			<h:outputText value="Setor" /><br />
+			<p:selectOneMenu value="#{chefeSetorBean.itemVO.setorId}" required="true" requiredMessage="Campo setor vazio.">
+				<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+				<f:selectItems value="#{chefeSetorBean.setores}" var="setor" itemLabel="#{setor.descricao}" itemValue="#{setor.id}" />
+			</p:selectOneMenu><br /><br />
+			
+			<h:outputText value="Chefe" /><br />
+			<p:selectOneMenu value="#{chefeSetorBean.itemVO.chefeId}" required="true" requiredMessage="Campo chefe vazio.">
+				<f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+				<f:selectItems value="#{chefeSetorBean.servidores}" var="servidor" itemLabel="#{servidor.nome} - #{servidor.matricula}" itemValue="#{servidor.matricula}" />
+			</p:selectOneMenu><br /><br />
+			
+			<p:commandButton type="submit" value="Gravar" actionListener="#{chefeSetorBean.gravar}" update="@form" />
+		</h:form>
+		
+		<div class="clearer"></div>
+		
+	</ui:define>
+	
+</ui:composition>
