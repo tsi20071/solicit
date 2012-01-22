@@ -154,7 +154,7 @@ public class SolicitacaoBean {
 	public void afterPropertiesSet() {
 		itemVO = new SolicitacaoVO();
 		tiposSolicitacoes = basicJpaRepository.queryFind("select ts from TipoSolicitacao ts order by ts.descricao asc");
-		setores = basicJpaRepository.queryFind("select s from Setor s order by s.descricao asc");
+		setores = basicJpaRepository.queryFind("select s from Setor s where not s.id = 1 order by s.descricao asc");
 		
 		itens = basicJpaRepository.queryFind("select s from Solicitacao s where s.servidor = ?1 order by s.id desc", new Object[] {usuarioBean.getUsuario()});
 	}

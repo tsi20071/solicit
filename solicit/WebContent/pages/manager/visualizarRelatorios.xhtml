@@ -11,12 +11,10 @@
 	<ui:define name="content">
 		<div class="pageHeader">Relatórios</div>
 		
-		<div style="width: 50%; float: left;">
-			<p:pieChart value="#{relatoriosBean.departmentPie}" legendPosition="w" title="Proporção de solicitações feitas por setor." shadow="true" style="border: none;" /><br />
-		</div>
-		<div style="width: 50%; float: right;">
-			<p:pieChart value="#{relatoriosBean.generalPie}" legendPosition="w" title="Proporção de solicitações homologadas e em aberto." seriesColors="00cc00,cc0000" shadow="true" style="border: none;" /><br />
-		</div>
+		<p:pieChart value="#{relatoriosBean.departmentPie}" legendPosition="w" title="Proporção de solicitações feitas por setor." shadow="true" style="border: none;" /><br />
+		<div class="clearer"></div>
+		
+		<p:pieChart value="#{relatoriosBean.generalPie}" legendPosition="w" title="Proporção de solicitações homologadas e em aberto." seriesColors="00cc00,cc0000" shadow="true" style="border: none;" /><br />
 		<div class="clearer"></div>
 	</ui:define>
 	

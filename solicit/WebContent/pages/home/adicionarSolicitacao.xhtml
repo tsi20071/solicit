@@ -21,7 +21,7 @@
 			</p:selectOneMenu><br /><br />
 			
 			<h:outputText value="Teor" /><br />
-			<p:editor value="#{solicitacaoBean.itemVO.descricao}" /><br />
+			<p:editor value="#{solicitacaoBean.itemVO.descricao}" required="true" requiredMessage="Teor da solicitação está vazio." /><br />
 			
 			<h:outputText value="Setor" /><br />
 			<p:selectOneMenu value="#{solicitacaoBean.itemVO.setorId}" required="true" requiredMessage="Campo setor vazio.">

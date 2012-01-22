@@ -18,7 +18,7 @@ public class RelatoriosBean {
 	
 	private PieChartModel generalPie;
 	private PieChartModel departmentPie;
-
+	
 	public RelatoriosBean() {}
 
 	public BasicJpaRepository getBasicJpaRepository() {

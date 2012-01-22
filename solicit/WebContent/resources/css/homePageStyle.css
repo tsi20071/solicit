@@ -4,6 +4,10 @@
 	font-size: 12px !important;
 }
 
+.ui-editor {
+    width: 100% !important;
+}
+
 img {
 	border: none;
 }
@@ -62,7 +66,7 @@ body {
 }
 
 .contentWrapper {
-	margin: 0 auto 20px auto;
+	margin: 0 auto 15px auto;
 	padding: 20px 40px 40px 40px;
 	background: #ffffff;
 	border: 1px solid #000000;
@@ -84,7 +88,7 @@ body {
 }
 
 .bottom {
-	margin: 0 auto 150px auto;
+	margin: 0 auto 60px auto;
 	padding: 20px;
 	width: 820px;
 	height: 110px;

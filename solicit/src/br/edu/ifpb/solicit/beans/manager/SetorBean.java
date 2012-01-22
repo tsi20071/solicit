@@ -49,7 +49,6 @@ public class SetorBean {
 
 	public void processarVO() throws Exception {
 		item.setDescricao(itemVO.getDescricao());
-		item.setChefe(basicJpaRepository.find(Servidor.class, itemVO.getChefeId()));
 		
 		if (basicJpaRepository.queryFind("select s from Setor s where s.descricao like ?1", new Object[] {itemVO.getDescricao()}).size() > 0)
 			throw new RuntimeException("Setor já existe.");
@@ -91,7 +90,7 @@ public class SetorBean {
 	@PostConstruct
 	public void afterPropertiesSet() {
 		itemVO = new SetorVO();
-		itens = basicJpaRepository.queryFind("select s from Setor s order by s.descricao");
+		itens = basicJpaRepository.queryFind("select s from Setor s where not s.id = 1 order by s.descricao");
 		servidores = basicJpaRepository.queryFind("select s from Servidor s where s not in (select t.chefe from Setor t)");
 	}
 }

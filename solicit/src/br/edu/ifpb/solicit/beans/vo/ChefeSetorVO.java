@@ -1,16 +1,16 @@
 package br.edu.ifpb.solicit.beans.vo;
 
-public class SetorVO {
-	private String descricao = "";
+public class ChefeSetorVO {
+	private String setorId = "";
 	private String chefeId = "";
 
-	public SetorVO() {}
+	public ChefeSetorVO() {}
 
-	public String getDescricao() {
-		return descricao;
+	public String getSetorId() {
+		return setorId;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setSetorId(String setorId) {
+		this.setorId = setorId;
 	}
 	public String getChefeId() {
 		return chefeId;

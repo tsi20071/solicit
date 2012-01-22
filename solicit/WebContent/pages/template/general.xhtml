@@ -22,7 +22,10 @@
 					</h:commandLink>
 				</h:form>
 			</div>
-			<div class="headerInfo"><h:outputText value="#{usuarioBean.usuario.nome}" style="padding-left: 15px;" rendered="#{not empty usuarioBean.usuario}" /></div>
+			<div class="headerInfo">
+				<h:outputText value="#{usuarioBean.usuario.nome}" rendered="#{not empty usuarioBean.usuario}" />
+				<h:outputText value=" - Chefe de #{usuarioBean.chefeSetor.descricao}" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso eq 1)}" />
+			</div>
 		</div>
 	</div>
 	
@@ -48,8 +51,16 @@
 				<h:graphicImage library="managerImages" name="eventTypeMoreOne.png" />
 			</h:commandLink>
 			
+			<h:commandLink action="malaDireta" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso eq 1)}" title="Mala direta">
+				<h:graphicImage library="managerImages" name="directMail.png" />
+			</h:commandLink>
+			
 			<h:commandLink action="adicionarSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso ge 2)}" title="Adicionar setor">
 				<h:graphicImage library="managerImages" name="departmentMoreOne.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="adicionarChefeSetor" rendered="#{(not empty usuarioBean.usuario) and (usuarioBean.usuario.nivelAcesso ge 2)}" title="Adicionar chefe a setor">
+				<h:graphicImage library="managerImages" name="departmentLeader.png" />
 			</h:commandLink>
 			
 			<h:commandLink action="#{usuarioBean.logoff}" rendered="#{not empty usuarioBean.usuario}" title="Efetuar logoff" style="float: right;">

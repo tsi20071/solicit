@@ -65,7 +65,7 @@
 				</h:panelGrid>
 			</p:dialog>
 			
-			<p:poll interval="4" listener="#{solicitacaoBean.atualizarItens}" update="viewTable"/>
+			<p:poll interval="4" listener="#{solicitacaoBean.atualizarItens}" update="viewTable" async="true"/>
 		</h:form>
 	</ui:define>
 	

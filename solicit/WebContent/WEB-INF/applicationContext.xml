@@ -26,5 +26,4 @@
 	<context:component-scan base-package="br.edu.ifpb.solicit.database.api,br.edu.ifpb.solicit.database.implementation,br.edu.ifpb.solicit.support" />
 	
 	<import resource="databaseContext.xml" />
-
 </beans>

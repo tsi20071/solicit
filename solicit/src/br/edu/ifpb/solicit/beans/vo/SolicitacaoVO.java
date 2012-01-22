@@ -1,8 +1,6 @@
 package br.edu.ifpb.solicit.beans.vo;
 
-import java.io.Serializable;
-
-public class SolicitacaoVO implements Serializable {
+public class SolicitacaoVO {
 	private String servidor = "";
 	private String matriculaServidor = "";
 	private String tipoSolicitacaoId = "";
