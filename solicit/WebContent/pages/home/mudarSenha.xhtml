@@ -12,7 +12,7 @@
 		<div class="pageHeader">Alterar minha senha</div>
 		
 		<h:form id="updateForm">
-			<p:growl autoUpdate="true" showDetail="true" />
+			<p:growl autoUpdate="true" showDetail="true" life="5000" />
 			
 			<h:outputText value="Senha atual" /><br />
 			<p:inputText type="password" value="#{usuarioBean.senha}" required="true" requiredMessage="Campo senha atual vazio." /><br />

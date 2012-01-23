@@ -12,7 +12,7 @@
 		<div class="pageHeader">Adicionar solicitação</div>
 		
 		<h:form id="addForm">
-			<p:growl autoUpdate="true" showDetail="true" />
+			<p:growl autoUpdate="true" showDetail="true" life="5000" />
 			
 			<h:outputText value="Tipo de solicitação" /><br />
 			<p:selectOneMenu value="#{solicitacaoBean.itemVO.tipoSolicitacaoId}" required="true" requiredMessage="Campo tipo de solicitação vazio.">
