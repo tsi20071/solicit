@@ -75,6 +75,10 @@ public class ChefeSetorBean {
 			throw new RuntimeException(item.getChefe().getNome() + " já é chefe de " + item.getDescricao() + ".");
 		}
 	}
+	
+	public void setorValueChangeListener() {
+		item = basicJpaRepository.find(Setor.class, Integer.parseInt(itemVO.getSetorId()));
+	}
 
 	// SETA NULL EM CHEFE DE UM SETOR ANTERIOR PARA EVITAR CHEFE EM 2 SETORES
 	public void avaliarChefiaSetorAnterior(Servidor chefe) {

@@ -26,7 +26,7 @@
 		</div>
 		
 		<h:form id="addForm">
-			<p:growl autoUpdate="true" showDetail="true" />
+			<p:growl autoUpdate="true" showDetail="true" life="5000" />
 			
 			<h:outputText value="Setor" /><br />
 			<p:inputText value="#{setorBean.itemVO.descricao}" required="true" requiredMessage="Campo setor vazio." /><br /><br />

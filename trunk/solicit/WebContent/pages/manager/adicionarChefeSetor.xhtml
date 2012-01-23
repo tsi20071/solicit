@@ -12,7 +12,7 @@
 		<div class="pageHeader">Adicionar Chefe a Setor</div>
 		
 		<h:form id="addForm">
-			<p:growl autoUpdate="true" showDetail="true" />
+			<p:growl autoUpdate="true" showDetail="true" life="5000" />
 			
 			<h:outputText value="Setor" /><br />
 			<p:selectOneMenu value="#{chefeSetorBean.itemVO.setorId}" required="true" requiredMessage="Campo setor vazio.">

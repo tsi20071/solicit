@@ -16,7 +16,7 @@
 		</div>
 	
 		<h:form id="addForm">
-			<p:growl autoUpdate="true" showDetail="true" />
+			<p:growl autoUpdate="true" showDetail="true" life="5000" />
 			
 			<h:outputText value="Matrícula" /><br />
 			<p:inputText value="#{servidorBean.itemVO.matricula}" required="true" requiredMessage="Campo matrícula vazio." /><br />
