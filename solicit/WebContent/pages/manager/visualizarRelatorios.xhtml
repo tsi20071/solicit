@@ -11,10 +11,49 @@
 	<ui:define name="content">
 		<div class="pageHeader">Relatórios</div>
 		
-		<p:pieChart value="#{relatoriosBean.departmentPie}" legendPosition="w" title="Proporção de solicitações feitas por setor." shadow="true" style="border: none;" /><br />
-		<div class="clearer"></div>
-		
-		<p:pieChart value="#{relatoriosBean.generalPie}" legendPosition="w" title="Proporção de solicitações homologadas e em aberto." seriesColors="00cc00,cc0000" shadow="true" style="border: none;" /><br />
+		<h:form id="reportForm">
+			<div style="float: left; width: 50%;">
+				<div style="text-align: center; height: 30px;">
+					<p:selectOneMenu value="#{relatoriosBean.indiceSetor}">
+						<f:selectItems value="#{relatoriosBean.setores}" var="setor" itemLabel="#{setor.descricao}" itemValue="#{setor.id}" />
+						<p:ajax event="change" listener="#{relatoriosBean.configurarPizzaSetor}" process="@this" update="pizzaSetor" />
+					</p:selectOneMenu><br />
+				</div>
+				<div>
+					<p:pieChart id="pizzaSetor" value="#{relatoriosBean.pizzaSetor}" legendPosition="w" seriesColors="00cc00,cc0000" shadow="true" showDataLabels="true" sliceMargin="5" />
+				</div>
+				<div class="clearer"><br /></div>
+				<div>
+					<p:pieChart id="pizzaGeral" value="#{relatoriosBean.pizzaGeral}" legendPosition="w" seriesColors="00cc00,cc0000" shadow="true" showDataLabels="true" title="Proporção geral (todos os setores)." sliceMargin="5"/>
+				</div>
+			</div>
+			
+			<div style="float: right; width: 50%;">
+				<div style="text-align: center; height: 30px;">
+					<p:commandButton value="Imprimir" type="button" icon="ui-icon-print" process="@this">
+						<p:printer target="reportTable" />
+					</p:commandButton>
+				</div>
+				<div class="clearer"><br/></div>
+				<p:dataTable id="reportTable" value="#{relatoriosBean.informacoesSetoresAsList}" var="setor" paginator="true" rows="15" emptyMessage="Ainda não há solicitações no servidor.">
+					<p:column style="text-align: center;" headerText="#">
+						<h:outputText value="#{setor.setorId}" />
+					</p:column>
+					
+					<p:column headerText="Setor">
+						<h:outputText value="#{setor.setorDescricao}" />
+					</p:column>
+					
+					<p:column style="text-align: center;" headerText="Homologadas">
+						<h:outputText value="#{setor.solicitacoesHomologadas}" />
+					</p:column>
+					
+					<p:column style="text-align: center;" headerText="Em aberto">
+						<h:outputText value="#{setor.solicitacoesEmAberto}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
 		<div class="clearer"></div>
 	</ui:define>
 	
